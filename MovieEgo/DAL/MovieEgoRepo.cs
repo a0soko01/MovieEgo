@@ -13,10 +13,17 @@ namespace MovieEgo.DAL
             _dBConnection = dbConnection;
         }
 
-        public IdentityUser Login(string username, string password)
+        public IdentityUser GetIdentityUserByEmail(string email)
         {
-            const string sql = @"SELECT * FROM IdentityUser WHERE username = @username AND password = @password";
-            return _dBConnection.QueryFirst<IdentityUser>(sql, new { username = username, password = password });
+            const string sql = @"SELECT * FROM IdentityUser WHERE email = @email";
+            return _dBConnection.QueryFirst<IdentityUser>(sql, new { email = email });
+        }
+
+        public int InsertIdentityUser(IdentityUser identityUser)
+        {
+            //@"INSERT INTO [dbo].[Customer]([FirstName], [LastName], [State], [City], [IsActive], [CreatedOn]) VALUES (@FirstName, @LastName, @State, @City, @IsActive, @CreatedOn)";
+            const string sql = @"SELECT * FROM IdentityUser WHERE username = @username";
+            return _dBConnection.Execute(sql, identityUser);
         }
     }
 }

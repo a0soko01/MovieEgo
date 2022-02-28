@@ -4,6 +4,8 @@ namespace MovieEgo.DAL
 {
     public interface IMovieEgoRepo
     {
-        public IdentityUser Login(string username, string password);
+        public IdentityUser GetIdentityUserByEmail(string email);
+
+        public int InsertIdentityUser(IdentityUser identityUser);
     }
 }

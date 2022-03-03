@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Provide sufficient contrast against white background */
+
+@import '~@angular/material/prebuilt-themes/pink-bluegrey.css'; /* this is default dark theme, should make some styling easier*/
+
 a {
   color: #0366d6;
 }
@@ -13,4 +16,20 @@ code {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+
+body {
+  background-image: linear-gradient(rgb(110, 109, 109) 0%, rgb(13, 13, 13) 100%);
+  background-size: auto;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  color: #fafafa;
+  font-family: Manrope;
+}
+
+.btn-info {
+  background-color: rgba(162,225,219,1) !important;
+  border: none !important;
 }

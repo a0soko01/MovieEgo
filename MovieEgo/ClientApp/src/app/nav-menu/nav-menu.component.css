@@ -2,11 +2,14 @@ a {
     cursor: pointer;
 }
 
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
+  a.navbar-brand { /* MovieEgo title*/
+    white-space: normal;
+    word-break: break-all;
+    color: rgba(252,185,170,1) !important;
+    filter: drop-shadow(rgb(0, 0, 0) 0px 6px 10px);
+    font-size: 48px;
+    font-weight: bold;
+  }
 
 html {
   font-size: 14px;
@@ -19,4 +22,17 @@ html {
 
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.bg-white { /* used to color the other words on navbar*/
+  background-color: rgba(70,70,70,1) !important;
+  font-size: 36px;
+}
+
+.text-dark {
+  color: rgba(255,219,204,1) !important;
+}
+
+.border-bottom {
+  border-bottom-color: transparent !important;
 }

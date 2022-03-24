@@ -5,3 +5,16 @@ body {
     height: 405px;
     width: 270px;
 }
+
+.horizontal_list {
+  float: left;
+  display: inline;
+  max-height: 300px;
+  max-width: 300%;
+}
+
+.image_container {
+  overflow-x: scroll;
+  max-height: 500px;
+  max-width: 300%;
+}

@@ -1,9 +1,11 @@
 <h1>Popular Movies</h1>
-<div class="image_container">
-  <div *ngFor="let movie of movies" style="max-height:30%; max-width:100%; left:calc(50% + 0px)" class="horizontal_list">
-    <!-- This will be a list of images/links to popular movies-->
-    <img [src]="movie.image" class="popular_images" />
-    &nbsp;
+<div style="width: 100%; overflow: hidden; overflow-x: scroll;">
+  <div class="image_list_container">
+    <div *ngFor="let movie of movies" class="horizontal_list">
+      <!-- This will be a list of images/links to popular movies-->
+      <img [src]="movie.image" class="popular_images" />
+      &nbsp;
+    </div>
   </div>
 </div>
 <div>

@@ -8,13 +8,15 @@ body {
 
 .horizontal_list {
   float: left;
-  display: inline;
-  max-height: 300px;
-  max-width: 300%;
+  max-height: 30%;
+  max-width: 100%;
+  left: calc(50% + 0px);
 }
 
-.image_container {
-  overflow-x: scroll;
-  max-height: 500px;
-  max-width: 300%;
+.image_list_container {
+  display: inline-block;
+  width: 200%;
+  max-height: 415px;
+  flex-wrap: wrap;
+  white-space: nowrap;
 }

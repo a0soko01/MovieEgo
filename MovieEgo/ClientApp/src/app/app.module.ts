@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { RegisterComponent } from './register/register.component';
+import { PostComponent } from './post/post.component';
+import { NgxStarRatingModule } from 'ngx-star-rating';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -20,17 +22,20 @@ export function tokenGetter() {
     NavMenuComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxStarRatingModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'register', component: RegisterComponent },
+      { path: 'post', component: PostComponent }
     ]),
     JwtModule.forRoot({
       config: {

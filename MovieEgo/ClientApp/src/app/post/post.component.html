@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-title">Post</h1>
+    <div *ngIf="showError" class="alert alert-danger" role="alert">
+      {{errorMessage}}
+    </div>
+    <form [formGroup]="postForm" autocomplete="off" novalidate (ngSubmit)="createPost(postForm.value)">
+
+      <div class="form-group row">
+        <label for="content" class="col-form-label col-sm-2">Post content</label>
+        <div class="col-md-5">
+          <textarea name="content" cols="50" rows="5" id="content" formControlName="content" class="form-control"></textarea>
+        </div>
+        <div class="col-md-5">
+          <em *ngIf="validateControl('content') && hasError('content', 'required')">Content is required</em>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="rating" class="col-form-label col-sm-1" style="padding-top:29px; margin-right:15px;">Rating</label>
+        <div class="col-md-4">
+          <ngx-star-rating formControlName="rating" [id]="'rating'"></ngx-star-rating>
+        </div>
+        <div class="col-md-5">
+          <em *ngIf="validateControl('rating') && hasError('rating', 'required')">Rating is required</em>
+        </div>
+      </div>
+      <br>
+
+      <div class="form-group row">
+        <div class="col-md-1">
+          <button type="submit" class="btn btn-info" [disabled]="!postForm.valid">Post</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

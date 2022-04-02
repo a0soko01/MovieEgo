@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MovieEgo.DAL;
 using MovieEgo.DAL.DTO;
@@ -14,23 +15,22 @@ namespace MovieEgo.Controllers
     {
         private readonly IMovieEgoRepo _movieEgoRepo;
         private readonly JwtHandler _jwtHandler;
-        public UserController(/*IMovieEgoRepo movieEgoRepo,*/ JwtHandler jwtHandler)
+        public UserController(IMovieEgoRepo movieEgoRepo, JwtHandler jwtHandler)
         {
-            //_movieEgoRepo = movieEgoRepo;
+            _movieEgoRepo = movieEgoRepo;
             _jwtHandler = jwtHandler;
         }
 
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] UserForAuthenticationDto userForAuthentication)
         {
-            /*var hasher = new PasswordHasher<IdentityUser>();
-            var user = _movieEgoRepo.GetIdentityUserByEmail(userForAuthentication.Email); 
+            var hasher = new PasswordHasher<IdentityUser>();
+            var user = _movieEgoRepo.GetIdentityUserByEmailOrUserName(userForAuthentication.Email, userForAuthentication.Email); 
             if (user == null || hasher.VerifyHashedPassword(user, user.PasswordHash, userForAuthentication.Password) == PasswordVerificationResult.Failed)
             {
-                return Unauthorized(new AuthResponseDto { ErrorMessage = "Invalid Authentication" });
-            }*/
-            var user = new IdentityUser();
-            user.Email = "test";
+                return Unauthorized("Incorrect email or password");
+            }
+
             var signingCredentials = _jwtHandler.GetSigningCredentials();
             var claims = _jwtHandler.GetClaims(user);
             var tokenOptions = _jwtHandler.GenerateTokenOptions(signingCredentials, claims);
@@ -41,18 +41,16 @@ namespace MovieEgo.Controllers
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] IdentityUser identityUser)
         {
-            //var user = _movieEgoRepo.GetIdentityUserByEmail(identityUser.Email);
-            var user = new IdentityUser();
-            user = null;
+            var user = _movieEgoRepo.GetIdentityUserByEmailOrUserName(identityUser.Email, identityUser.UserName);
 
             if (user == null)
             {
                 var hasher = new PasswordHasher<IdentityUser>();
                 string hashedPassword = hasher.HashPassword(identityUser, identityUser.PasswordHash);
                 identityUser.PasswordHash = hashedPassword;
-                //int insert = _movieEgoRepo.InsertIdentityUser(identityUser);
+                _movieEgoRepo.InsertIdentityUser(identityUser);
             }
-            else if (user.Email != null)
+            else if (user.Email == identityUser.Email)
             {
                 return Unauthorized("Email already in use");
             }
@@ -61,6 +59,16 @@ namespace MovieEgo.Controllers
                 return Unauthorized("Username already in use");
             }
 
+            return Ok(new JsonResult("Registration successful. Please login"));
+        }
+
+        [Authorize]
+        [HttpPost("Post")]
+        public async Task<IActionResult> Post([FromBody] PostDto post)
+        {
+            string email = User.Identity.Name;
+            post.IdentityUserId = _movieEgoRepo.GetUserIdByEmail(email);
+            _movieEgoRepo.InsertPost(post);
             return Ok();
         }
     }

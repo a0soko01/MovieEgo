@@ -6,7 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using MovieEgo.DAL;
 using MovieEgo.JwtFeatures;
+using System.Data;
+using System.Data.SqlClient;
 using System.Text;
 
 namespace MovieEgo
@@ -51,9 +54,8 @@ namespace MovieEgo
 
             services.AddScoped<JwtHandler>();
 
-            //string dbConnectionString = this.Configuration.GetConnectionString("dbConnection1");
-            //services.AddTransient<IDbConnection>((sp) => new SqlConnection(dbConnectionString));
-            //services.AddScoped<IMovieEgoRepo, MovieEgoRepo>();
+            services.AddTransient<IDbConnection>((sp) => new SqlConnection(this.Configuration.GetConnectionString("dbConnection1")));
+            services.AddScoped<IMovieEgoRepo, MovieEgoRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { RegisterComponent } from './register/register.component';
 import { MovieComponent } from './movie/movie.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -29,11 +30,13 @@ export function tokenGetter() {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatGridListModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'movies', component: MovieComponent },
+      { path: '**', component: HomeComponent },
 
     ]),
     JwtModule.forRoot({

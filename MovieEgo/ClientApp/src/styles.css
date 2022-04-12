@@ -27,6 +27,7 @@ body {
   z-index: 1;
   color: #fafafa;
   font-family: Manrope;
+  overflow-x: hidden;
 }
 
 .btn-info {

@@ -5,3 +5,24 @@ body {
     height: 405px;
     width: 270px;
 }
+
+.horizontal_list {
+  float: left;
+  max-height: 30%;
+  max-width: 100%;
+  left: calc(50% + 0px);
+}
+
+.image_list_container {
+  display: inline-block;
+  width: 200%;
+  max-height: 415px;
+  flex-wrap: wrap;
+  white-space: nowrap;
+}
+
+.top_movies {
+  flex: 1 1 auto;
+  max-width: 100%;
+  width: 90%;
+}

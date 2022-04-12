@@ -46,12 +46,12 @@ export class LoginComponent implements OnInit {
       .subscribe(res => {
         localStorage.setItem("token", res.token);
         this._authService.sendAuthStateChangeNotification(res.isAuthSuccessful);
-        const decodedToken = this._jwtHelper.decodeToken(res.token);
-        console.log(decodedToken);
+        //const decodedToken = this._jwtHelper.decodeToken(res.token);
+        //console.log(decodedToken);
         this._router.navigate([this._returnUrl]);
       },
         (error) => {
-          this.errorMessage = error;
+          this.errorMessage = error.error;
           this.showError = true;
         })
   }

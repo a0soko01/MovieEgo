@@ -40,8 +40,9 @@ export function tokenGetter() {
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'movies', component: MovieComponent },
-      { path: '**', component: HomeComponent },
       { path: 'post', component: PostComponent },
+
+      { path: '**', component: HomeComponent },
     ]),
     JwtModule.forRoot({
       config: {

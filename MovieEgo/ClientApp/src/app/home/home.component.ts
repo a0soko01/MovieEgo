@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MovieGetterService } from "../services/MovieGetterService";
 
 @Component({
   selector: 'app-home',
@@ -6,4 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  constructor(private GetterService: MovieGetterService) {
+    GetterService.getMovie().subscribe(result => {
+      console.log(result);
+    })
+  }
 }

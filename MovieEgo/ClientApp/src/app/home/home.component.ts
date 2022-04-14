@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MovieData } from '../interfaces/MovieData';
+import { MovieGetterService } from "../services/MovieGetterService";
 
 @Component({
   selector: 'app-home',
@@ -17,4 +18,9 @@ export class HomeComponent {
     { id: "1", title: "Joker", fullTitle: "Joker fulltitle, fulltitle", year: "2019", image: "https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg", rating: "5.0" },
     { id: "2", title: "Sailor Moon", fullTitle: "Sailor Moon Apollo", year: "2020", image: "https://m.media-amazon.com/images/M/MV5BYTkxMmQ5ZjMtNDVhYi00YTNjLWFiZTUtZTgyZjQ3ZWJiNjdmXkEyXkFqcGdeQXVyMTA3MzQ4MTg0._V1_.jpg", rating: "4.5" }
   ];
+  constructor(private GetterService: MovieGetterService) {
+    GetterService.getMovie().subscribe(result => {
+      console.log(result);
+    })
+  }
 }

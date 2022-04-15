@@ -7,7 +7,10 @@ export class MovieGetterService {
   constructor(private http: HttpClient) { }
 
   getMovie() {
-    console.log("hit");
     return this.http.get("TMDB");
+  }
+
+  getPopularMovies() {
+    return this.http.get("TMDB/Popular");
   }
 }

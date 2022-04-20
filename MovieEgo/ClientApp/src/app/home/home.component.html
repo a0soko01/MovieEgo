@@ -3,7 +3,7 @@
   <div class="image_list_container">
     <div *ngFor="let movie of pop_movies" class="horizontal_list">
       <!-- This will be a list of images/links to popular movies-->
-      <img [src]="movie.poster_path" class="popular_images" routerLink="/movies" routerLinkActive="active"/>
+      <img [src]="movie.poster_path" class="popular_images" [routerLink]="['/movie', movie.id]" routerLinkActive="active"/>
       &nbsp;
     </div>
   </div>

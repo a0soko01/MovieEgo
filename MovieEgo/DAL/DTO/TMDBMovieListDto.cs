@@ -7,6 +7,6 @@ namespace MovieEgo.DAL.DTO
 {
     public class TMDBMovieListDto
     {
-        public List<TMDBMovieDto> MovieList { set; get; }
+        public List<TMDBMovieDto> results { set; get; }
     }
 }

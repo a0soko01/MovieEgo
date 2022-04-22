@@ -1,8 +1,7 @@
 export interface MovieData {
-  id: string;
+  id: number;
   title: string;
-  fullTitle: string;
-  year: string;
-  image: string;
+  overview: string;
+  poster_path: string;
   rating: string;
 }

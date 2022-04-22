@@ -39,7 +39,7 @@ export function tokenGetter() {
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'movies', component: MovieComponent },
+      { path: 'movie/:id', component: MovieComponent },
       { path: 'post', component: PostComponent },
 
       { path: '**', component: HomeComponent },

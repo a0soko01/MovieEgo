@@ -8,5 +8,7 @@
 
 		public string poster_path { set; get; }
 
+		public int id { set; get; }
+
 	}
 }

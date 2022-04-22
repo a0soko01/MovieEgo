@@ -1,2 +1,7 @@
-﻿body {
+body {
+}
+
+.popular_images {
+  height: 100%;
+  /*width: 100%;*/
 }

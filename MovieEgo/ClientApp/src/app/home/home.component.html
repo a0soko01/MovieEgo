@@ -1,16 +1,16 @@
 <h1>Popular Movies</h1>
 <div style="width: 100%; overflow: hidden; overflow-x: scroll;">
   <div class="image_list_container">
-    <div *ngFor="let movie of movies" class="horizontal_list">
+    <div *ngFor="let movie of pop_movies" class="horizontal_list">
       <!-- This will be a list of images/links to popular movies-->
-      <img [src]="movie.image" class="popular_images" routerLink="/movies" routerLinkActive="active"/>
+      <img [src]="movie.poster_path" class="popular_images" [routerLink]="['/movie', movie.id]" routerLinkActive="active"/>
       &nbsp;
     </div>
   </div>
 </div>
 <div>
   <h1 style="margin-top:8px">Top Movies</h1>
-  <div *ngFor="let movie of movies">
-    <p routerLink="/movies" routerLinkActive="active" class="top_movies"> {{movie.title}}:  {{movie.rating}}/5</p>
+  <div *ngFor="let movie of top_movies">
+    <p [routerLink]="['/movie', movie.id]" routerLinkActive="active" class="top_movies"> {{movie.title}}:  {{movie.rating}}/5</p>
   </div>
 </div>

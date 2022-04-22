@@ -8,10 +8,8 @@ import { MovieData } from "../interfaces/MovieData";
 export class MovieGetterService {
   constructor(private http: HttpClient) { }
 
-  getMovie(id: number) {
-    let queryParams = new HttpParams();
-    queryParams.append("id", ""+id);
-    return this.http.get("TMDB", { params: queryParams });
+  getMovie(id: number) { //this is a post
+    return this.http.post("TMDB", id);
   }
 
   getPopularMovies() {

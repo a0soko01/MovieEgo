@@ -11,10 +11,9 @@ namespace MovieEgo.Controllers
 	[Route("[controller]")]
 	public class TMDBController : ControllerBase
 	{
-		[HttpGet]
-		public IActionResult getMovie([FromBody] TMDBMovieDto movie)
+		[HttpPost]
+		public IActionResult getMovie([FromBody] int id)
 		{
-			int id = movie.id;
 
 			string apiKey = "5faa0dfc8b865cd84a95b608556b810d";
 			HttpWebRequest apiRequest = WebRequest.Create("https://api.themoviedb.org/3/movie/" + id  + "?api_key=" + apiKey) as HttpWebRequest;

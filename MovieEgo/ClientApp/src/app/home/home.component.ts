@@ -39,7 +39,7 @@ export class HomeComponent {
       console.log(result);
       var temp = result as MovieData[];
       for (let i = 0; i < 10; i++) {
-        temp[i].rating = "4.5";
+        temp[i].rating = "5";
         temp[i].poster_path = this.poster_path_string + temp[i].poster_path;
         this.top_movies.push(temp[i]);
       }

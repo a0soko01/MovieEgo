@@ -3,6 +3,7 @@ import { MovieGetterService } from '../services/MovieGetterService';
 import { ActivatedRoute } from '@angular/router';
 import { MovieData } from '../interfaces/MovieData';
 import { PostService } from '../services/post.service';
+import { PostDto } from '../interfaces/PostDto';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class MovieComponent {
   id: number;
   movie = {} as MovieData;
   poster_path_string = "https://image.tmdb.org/t/p/original/";
+  posts: PostDto[];
 
   constructor(private getterService: MovieGetterService, private activatedRoute: ActivatedRoute, private postService: PostService) {
     this.activatedRoute.paramMap.subscribe(params => {
@@ -37,6 +39,8 @@ export class MovieComponent {
 
     postService.getPostsByMovie(this.id).subscribe(result => {
       console.log(result);
+      this.posts = result as PostDto[];
+      console.log(this.posts);
     })
   }
 

@@ -16,6 +16,8 @@ export class RegisterComponent implements OnInit {
   public showError: boolean;
   private _returnUrl: string;
 
+  public regConfirm: boolean;
+
   constructor(private _authService: AuthenticationService, private _router: Router, private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -47,6 +49,7 @@ export class RegisterComponent implements OnInit {
       .subscribe(res => {
         console.log(res.value);
         //this._router.navigate([this._returnUrl]);
+        this.regConfirm = true; //this has the "register confirmed!" message show
       },
         (error) => {
           console.log(error);

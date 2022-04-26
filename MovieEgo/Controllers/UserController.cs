@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using MovieEgo.DAL;
 using MovieEgo.DAL.DTO;
 using MovieEgo.JwtFeatures;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
 
@@ -70,6 +71,14 @@ namespace MovieEgo.Controllers
             post.IdentityUserId = _movieEgoRepo.GetUserIdByEmail(email);
             _movieEgoRepo.InsertPost(post);
             return Ok();
+        }
+
+        [HttpPost("GetPost")]
+        public async Task<IActionResult> GetPostByMovieId([FromBody] int movieId)
+        {
+            int id = movieId;
+            List<PostDto> posts = (List<PostDto>)_movieEgoRepo.GetPostsByMovieId(id);
+            return Ok(posts);
         }
     }
 }

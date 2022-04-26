@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { PostDto } from "../interfaces/PostDto";
 import { PostService } from "../services/post.service";
@@ -14,6 +14,7 @@ export class PostComponent {
   public errorMessage: string = '';
   public showError: boolean;
   private _returnUrl: string;
+  @Input() movieId: number;
 
   constructor(private postService: PostService) { }
 
@@ -22,6 +23,7 @@ export class PostComponent {
       content: new FormControl("", [Validators.required]),
       rating: new FormControl("", [Validators.required])
     })
+    console.log(this.movieId);
   }
 
   public validateControl = (controlName: string) => {
@@ -40,7 +42,7 @@ export class PostComponent {
       Vote: 0,
       Rating: post.rating,
       IdentityUserId: -1,
-      MovieId: 1 //add move id here
+      MovieId: this.movieId //TMDB api
     }
     this.postService.post(postDto).subscribe(result => {
       //console.log(result)

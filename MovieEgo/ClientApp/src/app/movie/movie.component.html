@@ -15,10 +15,10 @@
     <app-post style="width:100%;" [movieId]="id"></app-post>
   </mat-grid-tile>
 
-  <mat-grid-tile colspan="6" rowspan="8" style="margin-top:8px">
+  <mat-grid-tile colspan="6" rowspan="8" style="margin-top:16px; overflow-y:scroll">
     <!--all the reviews-->
-    <ul style="width:100%">
-      <div *ngFor="let post of posts" style="max-height:20%; width:100%; margin-top:16px">
+    <ul style="width: 100%; margin-top: 32px;">
+      <div *ngFor="let post of posts" style="max-height: 20%; width: 100%;">
         <h1 style="width: 100%; text-align: left; flex: 1 1 auto;"> User: {{post.identityUserId}} <span style="float:right; margin-right:32px">{{post.rating}} / 5 </span></h1>
         <!-- This will be a list of images/links to popular movies-->
         <h3 style="width:90%; max-height:20%">{{post.content}}</h3>

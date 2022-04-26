@@ -46,6 +46,7 @@ export class PostComponent {
     }
     this.postService.post(postDto).subscribe(result => {
       //console.log(result)
+      this.postForm.reset();
     },
       (error) => {
         this.errorMessage = error.error;

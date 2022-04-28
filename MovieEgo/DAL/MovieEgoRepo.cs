@@ -45,10 +45,10 @@ namespace MovieEgo.DAL
             });
         }
 
-        public IEnumerable<PostDto> GetPostsByMovieId(int id)
+        public IEnumerable<PostDto> GetPostsByMovieId(int MovieId)
         {
             const string sql = @"SELECT * FROM [dbo].[Post] WHERE MovieId = @MovieId";
-            return _dBConnection.Query<PostDto>(sql, new { id });
+            return _dBConnection.Query<PostDto>(sql, new { MovieId });
         }
 
         public int GetUserIdByEmail(string email)

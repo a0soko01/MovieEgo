@@ -10,4 +10,8 @@ export class PostService {
   public post(body: PostDto): Observable<any> {
     return this.http.post("user/post", body);
   }
+
+  public getPostsByMovie(id: number): Observable<any> {
+    return this.http.post("user/getpost", id);
+  }
 }
